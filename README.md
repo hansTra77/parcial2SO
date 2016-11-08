@@ -10,15 +10,19 @@ Link: https://github.com/hansTra77/parcial2SO/
 
 Se creo el repositorio parcial2SO en el cual posteriormente se usara para configurar el proyecto en Jenkins.
 
+![][1]
+
 ### Creación del archivo test.py
 
 Inicialmente se crea el archivo de pruebas para los metodos de python, esto se realiza por medio del framework pytest.
+
+![][2]
 
 ### Creacion del archivo run_test.sh
 
 Este archivo se crea con el proposito de tener un punto de acceso al test que realizamos y que este tenga a su vez los permisos necesarios para realizar los test desde Jenkins.
 
-
+![][3]
 
 Tras crearse el archivo se observaron los permisos del mismo y se modificaron los permisos de forma que se permitiera la ejecucion.
 
@@ -26,12 +30,19 @@ Tras crearse el archivo se observaron los permisos del mismo y se modificaron lo
 $ ls -l
 $ chmod +x run_test.sh
 ```
+![][4]
 
 ### Configuracion del servidor de integracion continua Jenkins
 
 Se crea un free-style project con el nombre de testParcial. Se uso la configuracion que se muestra a continuacion.
 
 Es importante recordar poner la url en la que se encuentran los documentos dell proyecto en el campo GitHub project.
+
+![][5]
+![][6]
+![][7]
+![][8]
+![][9]
 
 ### Archivos utilizados para comprobar los test
 
@@ -132,10 +143,27 @@ Se corre el comando
 $ pytest
 ```
 
+![][10]
+
 ### Prueba usando Jenkins
 
 A continuacion se procede a realizar la prueba desde la interfaz de Jenkins, Se selecciona el proyecto creado y se oprime en aplicar, esto correra la prueba.
 A continuacion, se presenta el resultado.
 
+![][11]
+![][12]
 
+Con lo anterior queda completado el parcial 2.
 
+[1]: images/0.JPG
+[2]: images/1.JPG
+[3]: images/2.JPG
+[4]: images/3.JPG
+[5]: images/4.JPG
+[6]: images/5.JPG
+[7]: images/6.JPG
+[8]: images/7.JPG
+[9]: images/8.JPG
+[10]: images/9.JPG
+[11]: images/10.JPG
+[12]: images/11.JPG
