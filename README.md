@@ -12,7 +12,7 @@ Se creó el repositorio parcial2SO en el cual posteriormente se usara para confi
 
 ![][1]
 
-### Creación del archivo test.py
+### Creación del archivo test_prueba.py
 
 Inicialmente se crea el archivo de pruebas para los métodos de python, esto se realiza por medio del framework pytest.
 
@@ -27,15 +27,13 @@ def client(request):
     client = files.app.test_client()
     return client
 
-def get_users(client):
-	return client.get('/v1.0/files',follow_redirects=True)
-
-def test_get_users(client):
-	result = get_users(client)
-	assert b'files.list_files()' in result.data
+def test_get_files(client):
+	result = client.get('/v1.0/files',follow_redirects=True)
+	assert "prueba1" in result.data
+	assert "prueba2" in result.data
 ```
 
-### Creación del archivo run_test.sh
+### Creación del archivo run_tests.sh
 
 Este archivo se crea con el propósito de tener un punto de acceso al test que realizamos y que este tenga a su vez los permisos necesarios para realizar los test desde Jenkins.
 
@@ -45,10 +43,9 @@ Este archivo se crea con el propósito de tener un punto de acceso al test que r
 #!/usr/bin/env bash
 set -e 
 
-#. ~/.virtualenvs/testproject/bin/activate
-. /var/lib/jenkins/.virtualenvs/testproject/bin/activate
+. ~/.virtualenvs/testproject/bin/activate
 
-PYTHONPATH=. py.test
+PYTHONPATH=. py.test --junitxml=python_tests.xml
 ```
 
 Tras crearse el archivo se observaron los permisos del mismo y se modificaron los permisos de forma que se permitiera la ejecución.
