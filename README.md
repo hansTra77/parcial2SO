@@ -18,11 +18,38 @@ Inicialmente se crea el archivo de pruebas para los metodos de python, esto se r
 
 ![][2]
 
+```python
+import pytest
+import files
+
+@pytest.fixture
+def client(request):
+    client = files.app.test_client()
+    return client
+
+def get_users(client):
+	return client.get('/v1.0/files',follow_redirects=True)
+
+def test_get_users(client):
+	result = get_users(client)
+	assert b'files.list_files()' in result.data
+```
+
 ### Creacion del archivo run_test.sh
 
 Este archivo se crea con el proposito de tener un punto de acceso al test que realizamos y que este tenga a su vez los permisos necesarios para realizar los test desde Jenkins.
 
 ![][3]
+
+```
+#!/usr/bin/env bash
+set -e 
+
+#. ~/.virtualenvs/testproject/bin/activate
+. /var/lib/jenkins/.virtualenvs/testproject/bin/activate
+
+PYTHONPATH=. py.test
+```
 
 Tras crearse el archivo se observaron los permisos del mismo y se modificaron los permisos de forma que se permitiera la ejecucion.
 
