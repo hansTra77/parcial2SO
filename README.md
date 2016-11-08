@@ -6,15 +6,15 @@ Código: 11112010
 
 Link: https://github.com/hansTra77/parcial2SO/
 
-### Creacion del repositorio en Github
+### Creación del repositorio en GitHub
 
-Se creo el repositorio parcial2SO en el cual posteriormente se usara para configurar el proyecto en Jenkins.
+Se creó el repositorio parcial2SO en el cual posteriormente se usara para configurar el proyecto en Jenkins.
 
 ![][1]
 
 ### Creación del archivo test.py
 
-Inicialmente se crea el archivo de pruebas para los metodos de python, esto se realiza por medio del framework pytest.
+Inicialmente se crea el archivo de pruebas para los métodos de python, esto se realiza por medio del framework pytest.
 
 ![][2]
 
@@ -35,9 +35,9 @@ def test_get_users(client):
 	assert b'files.list_files()' in result.data
 ```
 
-### Creacion del archivo run_test.sh
+### Creación del archivo run_test.sh
 
-Este archivo se crea con el proposito de tener un punto de acceso al test que realizamos y que este tenga a su vez los permisos necesarios para realizar los test desde Jenkins.
+Este archivo se crea con el propósito de tener un punto de acceso al test que realizamos y que este tenga a su vez los permisos necesarios para realizar los test desde Jenkins.
 
 ![][3]
 
@@ -51,7 +51,7 @@ set -e
 PYTHONPATH=. py.test
 ```
 
-Tras crearse el archivo se observaron los permisos del mismo y se modificaron los permisos de forma que se permitiera la ejecucion.
+Tras crearse el archivo se observaron los permisos del mismo y se modificaron los permisos de forma que se permitiera la ejecución.
 
 ```
 $ ls -l
@@ -59,11 +59,11 @@ $ chmod +x run_test.sh
 ```
 ![][4]
 
-### Configuracion del servidor de integracion continua Jenkins
+### Configuración del servidor de integración continua Jenkins
 
-Se crea un free-style project con el nombre de testParcial. Se uso la configuracion que se muestra a continuacion.
+Se crea un free-style project con el nombre de testParcial. Se usó la configuración que se muestra a continuación.
 
-Es importante recordar poner la url en la que se encuentran los documentos dell proyecto en el campo GitHub project.
+Es importante recordar poner la url en la que se encuentran los documentos del proyecto en el campo GitHub project.
 
 ![][5]
 ![][6]
@@ -160,7 +160,7 @@ def recent_created():
 if __name__ == "__main__":
   app.run(host='0.0.0.0',port=9191,debug='True')
 ```
-De entre estos archivos el metodo que se probara sera el list_files() del archivo files.py.
+De entre estos archivos el método que se probara será el list_files() del archivo files.py.
 
 ### Prueba del test desde consola
 
@@ -174,8 +174,8 @@ $ pytest
 
 ### Prueba usando Jenkins
 
-A continuacion se procede a realizar la prueba desde la interfaz de Jenkins, Se selecciona el proyecto creado y se oprime en aplicar, esto correra la prueba.
-A continuacion, se presenta el resultado.
+A continuación se procede a realizar la prueba desde la interfaz de Jenkins, Se selecciona el proyecto creado y se oprime en aplicar, esto correrá la prueba.
+A continuación, se presenta el resultado.
 
 ![][11]
 ![][12]
