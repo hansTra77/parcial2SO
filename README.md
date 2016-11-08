@@ -6,6 +6,78 @@ Código: 11112010
 
 Link: https://github.com/hansTra77/parcial2SO/
 
+
+### Instalación de Jenkins
+
+Primero se instalo Jenkins en la maquina virtual siguiendo la guia del profesor.
+Se actualiza la fecha del servidor.
+
+```
+# yum install ntp ntpdate ntp-doc
+# chkconfig ntpd on
+# ntpdate pool.ntp.org
+# /etc/init.d/ntpd start
+```
+
+Con la fecha actualizada se instalan las dependiencias de Jenkins.
+
+```
+# yum install java-1.7.0-openjdk
+# yum install wget -y
+# yum install git -y
+# sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+# sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+# sudo yum install jenkins
+```
+
+Se abre en el archivo iptables el puerto 8080 sobre el que corre Jenkins.
+
+```
+# chkconfig jenkins on
+# service jenkins start
+# iptables -I INPUT 5 -p tcp -m state --state NEW -m tcp --dport 8080 -j ACCEPT
+# service iptables save
+```
+
+```
+# wget https://bootstrap.pypa.io/get-pip.py
+# python get-pip.py
+```
+
+Se instala virtualenv.
+
+```
+# pip install virtualenv
+```
+
+Se permite a Jenkins usar la consola, en este caso bash.
+
+```
+# vi /etc/passwd
+# change for user jenkins /bin/false with /bin/bash
+```
+
+Se crea el entorno virtual para las pruebas.
+
+```
+# su jenkins
+$ mkdir /var/lib/jenkins/.virtualenvs
+$ cd /var/lib/jenkins/.virtualenvs
+$ virtualenv testproject
+$ . testproject/bin/activate
+```
+
+Se instalan las dependencias de PYTEST
+
+```
+$ pip install xmlrunner
+$ pip install unittest2
+$ pip install pytest
+$ pip install pytest-cov
+$ pip install flask
+```
+Con Jenkins instalado se procede a continuar con el ejercicio propuesto en el parcial.
+
 ### Creación del repositorio en GitHub
 
 Se creó el repositorio parcial2SO en el cual posteriormente se usara para configurar el proyecto en Jenkins.
